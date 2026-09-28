@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trendon & Ayu — Kisah Cinta Kami</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --pink: #ff6b9d;
+    --deep-pink: #c9184a;
+    --soft: #fff0f5;
+    --dark: #2b1b2e;
+    --gold: #d4af7a;
+  }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--soft);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    background: linear-gradient(135deg, #ffe0ec 0%, #fff5f9 50%, #ffe8f0 100%);
+    overflow: hidden;
+    padding: 40px 20px;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(255,107,157,0.15) 0%, transparent 40%),
+      radial-gradient(circle at 80% 70%, rgba(201,24,74,0.12) 0%, transparent 40%);
+    pointer-events: none;
+  }
+
+  .heart-float {
+    position: absolute;
+    color: var(--pink);
+    opacity: 0.5;
+    animation: floatUp linear infinite;
+    pointer-events: none;
+  }
+
+  @keyframes floatUp {
+    0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+    10% { opacity: 0.6; }
+    90% { opacity: 0.6; }
+    100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+  }
+
+  .hero-content { position: relative; z-index: 2; }
+
+  .hero .subtitle {
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    color: var(--deep-pink);
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 8vw, 6rem);
+    line-height: 1.1;
+    color: var(--dark);
+    margin-bottom: 10px;
+  }
+
+  .amp {
+    display: inline-block;
+    color: var(--deep-pink);
+    font-style: italic;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+  }
+
+  .hero .tagline {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    color: #7a5560;
+    margin: 25px 0 40px;
+  }
+
+  .divider {
+    width: 80px;
+    height: 2px;
+    background: var(--gold);
+    margin: 0 auto 30px;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 15px 45px;
+    background: var(--deep-pink);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: all 0.3s;
+    box-shadow: 0 10px 30px rgba(201,24,74,0.3);
+    border: none;
+    cursor: pointer;
+    font-size: 0.95rem;
+  }
+
+  .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(201,24,74,0.45);
+    background: #a81540;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--deep-pink);
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    animation: bounce 2s infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-8px); }
+  }
+
+  /* ===== SECTIONS ===== */
+  section { padding: 100px 20px; }
+
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    text-align: center;
+    margin-bottom: 15px;
+  }
+
+  .section-sub {
+    text-align: center;
+    color: #8a6b76;
+    margin-bottom: 60px;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+  }
+
+  /* ===== COUPLE CARDS ===== */
+  .couple {
+    background: #fff;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+
+  .person {
+    text-align: center;
+    padding: 40px 20px;
+    border-radius: 20px;
+    background: linear-gradient(160deg, #fff 0%, #fff5f9 100%);
+    box-shadow: 0 15px 40px rgba(201,24,74,0.08);
+    transition: transform 0.4s;
+  }
+
+  .person:hover { transform: translateY(-8px); }
+
+  .avatar {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    margin: 0 auto 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    color: #fff;
+    box-shadow: 0 15px 35px rgba(201,24,74,0.25);
+    border: 5px solid #fff;
+  }
+
+  .avatar.trendon { background: linear-gradient(135deg, #c9184a, #ff6b9d); }
+  .avatar.ayu { background: linear-gradient(135deg, #ff6b9d, #d4af7a); }
+
+  .person h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+  }
+
+  .person .role {
+    color: var(--deep-pink);
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    font-weight: 600;
+  }
+
+  .person p { color: #7a5560; line-height: 1.7; font-size: 0.95rem; }
+
+  /* ===== TIMELINE ===== */
+  .timeline-section {
+    background: linear-gradient(180deg, #fff 0%, var(--soft) 100%);
+  }
+
+  .timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px 0;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--pink), var(--gold));
+  }
+
+  .tl-item {
+    position: relative;
+    width: 50%;
+    padding: 20px 40px;
+    margin-bottom: 20px;
+  }
+
+  .tl-item:nth-child(odd) { left: 0; text-align: right; }
+  .tl-item:nth-child(even) { left: 50%; text-align: left; }
+
+  .tl-item::after {
+    content: '❤';
+    position: absolute;
+    top: 30px;
+    width: 34px;
+    height: 34px;
+    background: #fff;
+    border: 2px solid var(--deep-pink);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--deep-pink);
+    font-size: 0.9rem;
+    box-shadow: 0 5px 15px rgba(201,24,74,0.2);
+  }
+
+  .tl-item:nth-child(odd)::after { right: -17px; }
+  .tl-item:nth-child(even)::after { left: -17px; }
+
+  .tl-card {
+    background: #fff;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(201,24,74,0.08);
+  }
+
+  .tl-date {
+    color: var(--deep-pink);
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .tl-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+  }
+
+  .tl-card p { color: #7a5560; font-size: 0.9rem; line-height: 1.6; }
+
+  /* ===== LOVE COUNTER ===== */
+  .counter-section {
+    background: linear-gradient(135deg, #2b1b2e 0%, #4a2840 100%);
+    color: #fff;
+    text-align: center;
+  }
+
+  .counter-section .section-title { color: #fff; }
+  .counter-section .section-sub { color: #d4af7a; }
+
+  .counter-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 25px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .counter-box {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(212,175,122,0.3);
+    border-radius: 15px;
+    padding: 30px 15px;
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s;
+  }
+
+  .counter-box:hover { transform: translateY(-5px); }
+
+  .counter-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: var(--gold);
+    margin-bottom: 5px;
+  }
+
+  .counter-label {
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #e8d5e0;
+  }
+
+  /* ===== QUOTES ===== */
+  .quote-section { text-align: center; background: var(--soft); }
+
+  .quote-card {
+    max-width: 700px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 60px 40px;
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(201,24,74,0.1);
+    position: relative;
+  }
+
+  .quote-card::before {
+    content: '"';
+    font-family: 'Playfair Display', serif;
+    font-size: 8rem;
+    color: rgba(255,107,157,0.2);
+    position: absolute;
+    top: -10px;
+    left: 30px;
+    line-height: 1;
+  }
+
+  .quote-text {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    line-height: 1.7;
+    color: #4a2840;
+    position: relative;
+    z-index: 1;
+  }
+
+  .quote-author {
+    margin-top: 30px;
+    color: var(--deep-pink);
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  /* ===== MESSAGE FORM ===== */
+  .message-section {
+    background: linear-gradient(135deg, #fff 0%, #fff5f9 100%);
+  }
+
+  .form-card {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 50px 40px;
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(201,24,74,0.1);
+  }
+
+  .form-group { margin-bottom: 20px; }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #4a2840;
+    letter-spacing: 1px;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 14px 18px;
+    border: 2px solid #ffe0ec;
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    color: var(--dark);
+    transition: border 0.3s;
+    background: #fffafc;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--pink);
+  }
+
+  .form-group textarea { resize: vertical; min-height: 120px; }
+
+  .form-card .btn { width: 100%; }
+
+  .form-message {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 10px;
+    background: #e8f5e9;
+    color: #2e7d32;
+    text-align: center;
+    font-size: 0.9rem;
+    display: none;
+  }
+
+  .form-message.show { display: block; animation: fadeIn 0.5s; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: #2b1b2e;
+    color: #e8d5e0;
+    text-align: center;
+    padding: 50px 20px 30px;
+  }
+
+  footer .names {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: var(--gold);
+    margin-bottom: 15px;
+  }
+
+  footer .heart-beat {
+    color: var(--pink);
+    font-size: 1.5rem;
+    animation: pulse 1.5s infinite;
+    display: inline-block;
+    margin: 0 10px;
+  }
+
+  footer p { font-size: 0.85rem; color: #a88fa0; margin-top: 20px; }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    .couple { grid-template-columns: 1fr; gap: 25px; }
+
+    .timeline::before { left: 20px; }
+    .tl-item {
+      width: 100%;
+      left: 0 !important;
+      text-align: left !important;
+      padding-left: 60px;
+      padding-right: 0;
+    }
+    .tl-item::after { left: 3px !important; right: auto !important; }
+
+    section { padding: 70px 20px; }
+    .form-card { padding: 35px 25px; }
+    .quote-card { padding: 45px 25px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero" id="home">
+  <div class="hero-content">
+    <div class="subtitle">Sebuah Kisah Cinta</div>
+    <h1>Trendon <span class="amp">&</span> Ayu</h1>
+    <div class="divider"></div>
+    <p class="tagline">"Dua hati, satu cerita yang tak pernah usai"</p>
+    <a href="#kisah" class="btn">Lihat Kisah Kami</a>
+  </div>
+  <div class="scroll-hint">↓ GULIR ↓</div>
+</header>
+
+<!-- COUPLE -->
+<section class="couple" id="kisah">
+  <div class="container" style="grid-column: 1/-1;">
+    <h2 class="section-title">Dua Insan</h2>
+    <p class="section-sub">Yang dipersatukan oleh takdir</p>
+  </div>
+  <div class="container" style="display: contents;">
+    <div class="person">
+      <div class="avatar trendon">T</div>
+      <h3>Trendon</h3>
+      <div class="role">Sang Kekasih</div>
+      <p>Sosok yang tenang namun penuh perhatian. Bagi Trendon, Ayu adalah rumah tempat ia selalu kembali, dan alasan di balik setiap senyumannya.</p>
+    </div>
+    <div class="person">
+      <div class="avatar ayu">A</div>
+      <h3>Ayu</h3>
+      <div class="role">Sang Pujaan</div>
+      <p>Pribadi yang hangat dan penuh kasih. Bagi Ayu, Trendon adalah pelabuhan yang menenangkan, tempat setiap cerita dan mimpi ia bagi bersama.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="timeline-section">
+  <div class="container">
+    <h2 class="section-title">Perjalanan Kami</h2>
+    <p class="section-sub">Momen-momen yang mengubah segalanya</p>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-card">
+          <div class="tl-date">Babak Pertama</div>
+          <h4>Pertemuan Pertama</h4>
+          <p>Langkah pertama yang tak direncanakan, namun mengubah segalanya. Sebuah senyum sederhana yang tersimpan hingga kini.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-card">
+          <div class="tl-date">Babak Kedua</div>
+          <h4>Obrolan Panjang</h4>
+          <p>Dari sapaan singkat menjadi percakapan yang tak pernah ingin diakhiri. Setiap kata terasa seperti rumah.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-card">
+          <div class="tl-date">Babak Ketiga</div>
+          <h4>Menyatakan Cinta</h4>
+          <p>Momen ketika hati akhirnya berbicara. Sebuah keberanian yang berbuah manis, dan awal dari segalanya.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-card">
+          <div class="tl-date">Hari Ini</div>
+          <h4>Masih Bersama</h4>
+          <p>Melewati setiap musim dengan tangan yang tetap tergenggam. Karena cinta sejati bukan tentang sempurna, tapi tentang bertahan.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COUNTER -->
+<section class="counter-section">
+  <div class="container">
+    <h2 class="section-title">Waktu yang Terjalin</h2>
+    <p class="section-sub">Setiap detik adalah anugerah</p>
+
+    <div class="counter-grid">
+      <div class="counter-box">
+        <div class="counter-num" id="days">0</div>
+        <div class="counter-label">Hari</div>
+      </div>
+      <div class="counter-box">
+        <div class="counter-num" id="hours">0</div>
+        <div class="counter-label">Jam</div>
+      </div>
+      <div class="counter-box">
+        <div class="counter-num" id="minutes">0</div>
+        <div class="counter-label">Menit</div>
+      </div>
+      <div class="counter-box">
+        <div class="counter-num" id="seconds">0</div>
+        <div class="counter-label">Detik</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section class="quote-section">
+  <div class="container">
+    <div class="quote-card">
+      <p class="quote-text">
+        Cinta bukan tentang seberapa lama kita bersama, tapi tentang seberapa dalam kita saling menjaga satu sama lain.
+      </p>
+      <div class="quote-author">— Trendon & Ayu —</div>
+    </div>
+  </div>
+</section>
+
+<!-- MESSAGE -->
+<section class="message-section">
+  <div class="container">
+    <h2 class="section-title">Tinggalkan Pesan</h2>
+    <p class="section-sub">Untuk Trendon & Ayu</p>
+
+    <form class="form-card" id="loveForm">
+      <div class="form-group">
+        <label>Nama Kamu</label>
+        <input type="text" id="name" placeholder="Tulis namamu..." required>
+      </div>
+      <div class="form-group">
+        <label>Pesan Cinta</label>
+        <textarea id="msg" placeholder="Tulis pesan hangat untuk mereka..." required></textarea>
+      </div>
+      <button type="submit" class="btn">Kirim Pesan ❤</button>
+      <div class="form-message" id="formMsg">Terima kasih! Pesanmu telah terkirim. 💕</div>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="names">Trendon <span class="heart-beat">❤</span> Ayu</div>
+  <p>Dibuat dengan cinta, untuk cinta.</p>
+  <p style="margin-top: 10px;">© <span id="year"></span> — Selamanya & Selamanya</p>
+</footer>
+
+<script>
+  // Floating hearts
+  function createHearts() {
+    const hero = document.querySelector('.hero');
+    const hearts = ['❤', '💕', '💗', '💖', '♡'];
+    setInterval(() => {
+      const h = document.createElement('div');
+      h.className = 'heart-float';
+      h.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+      h.style.left = Math.random() * 100 + '%';
+      h.style.fontSize = (Math.random() * 20 + 12) + 'px';
+      h.style.animationDuration = (Math.random() * 8 + 8) + 's';
+      hero.appendChild(h);
+      setTimeout(() => h.remove(), 16000);
+    }, 800);
+  }
+  createHearts();
+
+  // Love counter (mulai dari tanggal jadian — ganti sesuai kebutuhan)
+  const startDate = new Date('2022-02-14T00:00:00');
+
+  function updateCounter() {
+    const now = new Date();
+    const diff = now - startDate;
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    document.getElementById('days').textContent = days.toLocaleString('id-ID');
+    document.getElementById('hours').textContent = hours;
+    document.getElementById('minutes').textContent = minutes;
+    document.getElementById('seconds').textContent = seconds;
+  }
+  updateCounter();
+  setInterval(updateCounter, 1000);
+
+  // Form
+  document.getElementById('loveForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const msg = document.getElementById('msg').value.trim();
+    if (!name || !msg) return;
+
+    const formMsg = document.getElementById('formMsg');
+    formMsg.classList.add('show');
+    formMsg.textContent = `Terima kasih ${name}! Pesanmu telah terkirim. 💕`;
+
+    this.reset();
+    setTimeout(() => formMsg.classList.remove('show'), 5000);
+  });
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+
+  // Year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Scroll reveal
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.person, .tl-card, .counter-box, .quote-card, .form-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+    el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
