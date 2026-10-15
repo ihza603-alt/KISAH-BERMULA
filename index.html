@@ -1,722 +1,999 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Trendon & Ayu — Kisah Cinta Kami</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-<style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  :root {
-    --pink: #ff6b9d;
-    --deep-pink: #c9184a;
-    --soft: #fff0f5;
-    --dark: #2b1b2e;
-    --gold: #d4af7a;
-  }
-
-  body {
-    font-family: 'Montserrat', sans-serif;
-    background: var(--soft);
-    color: var(--dark);
-    overflow-x: hidden;
-  }
-
-  /* ===== HERO ===== */
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    position: relative;
-    background: linear-gradient(135deg, #ffe0ec 0%, #fff5f9 50%, #ffe8f0 100%);
-    overflow: hidden;
-    padding: 40px 20px;
-  }
-
-  .hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image:
-      radial-gradient(circle at 20% 30%, rgba(255,107,157,0.15) 0%, transparent 40%),
-      radial-gradient(circle at 80% 70%, rgba(201,24,74,0.12) 0%, transparent 40%);
-    pointer-events: none;
-  }
-
-  .heart-float {
-    position: absolute;
-    color: var(--pink);
-    opacity: 0.5;
-    animation: floatUp linear infinite;
-    pointer-events: none;
-  }
-
-  @keyframes floatUp {
-    0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
-    10% { opacity: 0.6; }
-    90% { opacity: 0.6; }
-    100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
-  }
-
-  .hero-content { position: relative; z-index: 2; }
-
-  .hero .subtitle {
-    letter-spacing: 6px;
-    text-transform: uppercase;
-    font-size: 0.8rem;
-    color: var(--deep-pink);
-    margin-bottom: 20px;
-    font-weight: 600;
-  }
-
-  .hero h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2.5rem, 8vw, 6rem);
-    line-height: 1.1;
-    color: var(--dark);
-    margin-bottom: 10px;
-  }
-
-  .amp {
-    display: inline-block;
-    color: var(--deep-pink);
-    font-style: italic;
-    animation: pulse 2s ease-in-out infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.15); }
-  }
-
-  .hero .tagline {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: clamp(1rem, 2.5vw, 1.4rem);
-    color: #7a5560;
-    margin: 25px 0 40px;
-  }
-
-  .divider {
-    width: 80px;
-    height: 2px;
-    background: var(--gold);
-    margin: 0 auto 30px;
-  }
-
-  .btn {
-    display: inline-block;
-    padding: 15px 45px;
-    background: var(--deep-pink);
-    color: #fff;
-    text-decoration: none;
-    border-radius: 50px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    transition: all 0.3s;
-    box-shadow: 0 10px 30px rgba(201,24,74,0.3);
-    border: none;
-    cursor: pointer;
-    font-size: 0.95rem;
-  }
-
-  .btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 15px 40px rgba(201,24,74,0.45);
-    background: #a81540;
-  }
-
-  .scroll-hint {
-    position: absolute;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: var(--deep-pink);
-    font-size: 0.8rem;
-    letter-spacing: 2px;
-    animation: bounce 2s infinite;
-  }
-
-  @keyframes bounce {
-    0%, 100% { transform: translateX(-50%) translateY(0); }
-    50% { transform: translateX(-50%) translateY(-8px); }
-  }
-
-  /* ===== SECTIONS ===== */
-  section { padding: 100px 20px; }
-
-  .container { max-width: 1100px; margin: 0 auto; }
-
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.8rem, 4vw, 3rem);
-    text-align: center;
-    margin-bottom: 15px;
-  }
-
-  .section-sub {
-    text-align: center;
-    color: #8a6b76;
-    margin-bottom: 60px;
-    font-size: 0.95rem;
-    letter-spacing: 1px;
-  }
-
-  /* ===== COUPLE CARDS ===== */
-  .couple {
-    background: #fff;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-  }
-
-  .person {
-    text-align: center;
-    padding: 40px 20px;
-    border-radius: 20px;
-    background: linear-gradient(160deg, #fff 0%, #fff5f9 100%);
-    box-shadow: 0 15px 40px rgba(201,24,74,0.08);
-    transition: transform 0.4s;
-  }
-
-  .person:hover { transform: translateY(-8px); }
-
-  .avatar {
-    width: 140px;
-    height: 140px;
-    border-radius: 50%;
-    margin: 0 auto 25px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Playfair Display', serif;
-    font-size: 3.5rem;
-    color: #fff;
-    box-shadow: 0 15px 35px rgba(201,24,74,0.25);
-    border: 5px solid #fff;
-  }
-
-  .avatar.trendon { background: linear-gradient(135deg, #c9184a, #ff6b9d); }
-  .avatar.ayu { background: linear-gradient(135deg, #ff6b9d, #d4af7a); }
-
-  .person h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.8rem;
-    margin-bottom: 10px;
-  }
-
-  .person .role {
-    color: var(--deep-pink);
-    font-size: 0.8rem;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    margin-bottom: 15px;
-    font-weight: 600;
-  }
-
-  .person p { color: #7a5560; line-height: 1.7; font-size: 0.95rem; }
-
-  /* ===== TIMELINE ===== */
-  .timeline-section {
-    background: linear-gradient(180deg, #fff 0%, var(--soft) 100%);
-  }
-
-  .timeline {
-    position: relative;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px 0;
-  }
-
-  .timeline::before {
-    content: '';
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 2px;
-    height: 100%;
-    background: linear-gradient(180deg, var(--pink), var(--gold));
-  }
-
-  .tl-item {
-    position: relative;
-    width: 50%;
-    padding: 20px 40px;
-    margin-bottom: 20px;
-  }
-
-  .tl-item:nth-child(odd) { left: 0; text-align: right; }
-  .tl-item:nth-child(even) { left: 50%; text-align: left; }
-
-  .tl-item::after {
-    content: '❤';
-    position: absolute;
-    top: 30px;
-    width: 34px;
-    height: 34px;
-    background: #fff;
-    border: 2px solid var(--deep-pink);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--deep-pink);
-    font-size: 0.9rem;
-    box-shadow: 0 5px 15px rgba(201,24,74,0.2);
-  }
-
-  .tl-item:nth-child(odd)::after { right: -17px; }
-  .tl-item:nth-child(even)::after { left: -17px; }
-
-  .tl-card {
-    background: #fff;
-    padding: 25px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(201,24,74,0.08);
-  }
-
-  .tl-date {
-    color: var(--deep-pink);
-    font-size: 0.75rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    font-weight: 600;
-    margin-bottom: 8px;
-  }
-
-  .tl-card h4 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.3rem;
-    margin-bottom: 8px;
-  }
-
-  .tl-card p { color: #7a5560; font-size: 0.9rem; line-height: 1.6; }
-
-  /* ===== LOVE COUNTER ===== */
-  .counter-section {
-    background: linear-gradient(135deg, #2b1b2e 0%, #4a2840 100%);
-    color: #fff;
-    text-align: center;
-  }
-
-  .counter-section .section-title { color: #fff; }
-  .counter-section .section-sub { color: #d4af7a; }
-
-  .counter-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 25px;
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
-  .counter-box {
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(212,175,122,0.3);
-    border-radius: 15px;
-    padding: 30px 15px;
-    backdrop-filter: blur(10px);
-    transition: transform 0.3s;
-  }
-
-  .counter-box:hover { transform: translateY(-5px); }
-
-  .counter-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.5rem;
-    color: var(--gold);
-    margin-bottom: 5px;
-  }
-
-  .counter-label {
-    font-size: 0.75rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: #e8d5e0;
-  }
-
-  /* ===== QUOTES ===== */
-  .quote-section { text-align: center; background: var(--soft); }
-
-  .quote-card {
-    max-width: 700px;
-    margin: 0 auto;
-    background: #fff;
-    padding: 60px 40px;
-    border-radius: 20px;
-    box-shadow: 0 20px 50px rgba(201,24,74,0.1);
-    position: relative;
-  }
-
-  .quote-card::before {
-    content: '"';
-    font-family: 'Playfair Display', serif;
-    font-size: 8rem;
-    color: rgba(255,107,157,0.2);
-    position: absolute;
-    top: -10px;
-    left: 30px;
-    line-height: 1;
-  }
-
-  .quote-text {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-    line-height: 1.7;
-    color: #4a2840;
-    position: relative;
-    z-index: 1;
-  }
-
-  .quote-author {
-    margin-top: 30px;
-    color: var(--deep-pink);
-    font-size: 0.85rem;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    font-weight: 600;
-  }
-
-  /* ===== MESSAGE FORM ===== */
-  .message-section {
-    background: linear-gradient(135deg, #fff 0%, #fff5f9 100%);
-  }
-
-  .form-card {
-    max-width: 600px;
-    margin: 0 auto;
-    background: #fff;
-    padding: 50px 40px;
-    border-radius: 20px;
-    box-shadow: 0 20px 50px rgba(201,24,74,0.1);
-  }
-
-  .form-group { margin-bottom: 20px; }
-
-  .form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: #4a2840;
-    letter-spacing: 1px;
-  }
-
-  .form-group input,
-  .form-group textarea {
-    width: 100%;
-    padding: 14px 18px;
-    border: 2px solid #ffe0ec;
-    border-radius: 12px;
-    font-family: inherit;
-    font-size: 0.95rem;
-    color: var(--dark);
-    transition: border 0.3s;
-    background: #fffafc;
-  }
-
-  .form-group input:focus,
-  .form-group textarea:focus {
-    outline: none;
-    border-color: var(--pink);
-  }
-
-  .form-group textarea { resize: vertical; min-height: 120px; }
-
-  .form-card .btn { width: 100%; }
-
-  .form-message {
-    margin-top: 20px;
-    padding: 15px;
-    border-radius: 10px;
-    background: #e8f5e9;
-    color: #2e7d32;
-    text-align: center;
-    font-size: 0.9rem;
-    display: none;
-  }
-
-  .form-message.show { display: block; animation: fadeIn 0.5s; }
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  /* ===== FOOTER ===== */
-  footer {
-    background: #2b1b2e;
-    color: #e8d5e0;
-    text-align: center;
-    padding: 50px 20px 30px;
-  }
-
-  footer .names {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.8rem;
-    color: var(--gold);
-    margin-bottom: 15px;
-  }
-
-  footer .heart-beat {
-    color: var(--pink);
-    font-size: 1.5rem;
-    animation: pulse 1.5s infinite;
-    display: inline-block;
-    margin: 0 10px;
-  }
-
-  footer p { font-size: 0.85rem; color: #a88fa0; margin-top: 20px; }
-
-  /* ===== RESPONSIVE ===== */
-  @media (max-width: 768px) {
-    .couple { grid-template-columns: 1fr; gap: 25px; }
-
-    .timeline::before { left: 20px; }
-    .tl-item {
-      width: 100%;
-      left: 0 !important;
-      text-align: left !important;
-      padding-left: 60px;
-      padding-right: 0;
-    }
-    .tl-item::after { left: 3px !important; right: auto !important; }
-
-    section { padding: 70px 20px; }
-    .form-card { padding: 35px 25px; }
-    .quote-card { padding: 45px 25px; }
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Julio & Trendon — Creative Technologists & Digital Architects</title>
+  <meta name="description" content="Portofolio resmi Julio & Trendon: Kolaborasi desain kelas dunia, animasi 3D interaktif, dan arsitektur sistem modern.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="dark-theme">
 
-<!-- HERO -->
-<header class="hero" id="home">
-  <div class="hero-content">
-    <div class="subtitle">Sebuah Kisah Cinta</div>
-    <h1>Trendon <span class="amp">&</span> Ayu</h1>
-    <div class="divider"></div>
-    <p class="tagline">"Dua hati, satu cerita yang tak pernah usai"</p>
-    <a href="#kisah" class="btn">Lihat Kisah Kami</a>
-  </div>
-  <div class="scroll-hint">↓ GULIR ↓</div>
-</header>
+  <!-- Interactive Background Canvas -->
+  <canvas id="bg-canvas"></canvas>
 
-<!-- COUPLE -->
-<section class="couple" id="kisah">
-  <div class="container" style="grid-column: 1/-1;">
-    <h2 class="section-title">Dua Insan</h2>
-    <p class="section-sub">Yang dipersatukan oleh takdir</p>
-  </div>
-  <div class="container" style="display: contents;">
-    <div class="person">
-      <div class="avatar trendon">T</div>
-      <h3>Trendon</h3>
-      <div class="role">Sang Kekasih</div>
-      <p>Sosok yang tenang namun penuh perhatian. Bagi Trendon, Ayu adalah rumah tempat ia selalu kembali, dan alasan di balik setiap senyumannya.</p>
+  <!-- Custom Cursor Glow & Dot -->
+  <div class="cursor-glow" id="cursor-glow"></div>
+  <div class="cursor-dot" id="cursor-dot"></div>
+
+  <!-- Audio Synthesizer Status Indicator -->
+  <div class="sound-toast" id="sound-toast">Audio FX Diaktifkan 🔊</div>
+
+  <!-- Navigation Bar -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="#hero" class="brand-logo" data-sound="hover">
+        <span class="logo-symbol">&lt;J&amp;T/&gt;</span>
+        <div class="logo-text">
+          <span class="brand-name">JULIO &amp; TRENDON</span>
+          <span class="brand-tag">DIGITAL ARCHITECTS</span>
+        </div>
+      </a>
+
+      <nav class="nav-links" id="nav-links">
+        <a href="#about" class="nav-item" data-sound="click"><span class="nav-num">01.</span> Profil</a>
+        <a href="#skills" class="nav-item" data-sound="click"><span class="nav-num">02.</span> Keahlian</a>
+        <a href="#projects" class="nav-item" data-sound="click"><span class="nav-num">03.</span> Karya</a>
+        <a href="#experience" class="nav-item" data-sound="click"><span class="nav-num">04.</span> Pengalaman</a>
+        <a href="#contact" class="nav-item" data-sound="click"><span class="nav-num">05.</span> Kontak</a>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Sound FX Toggle Button -->
+        <button id="sound-toggle" class="icon-btn" title="Toggle Sound Effects" aria-label="Toggle Sound Effects">
+          <svg class="sound-on-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+          </svg>
+          <svg class="sound-off-icon hidden" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <line x1="23" y1="9" x2="17" y2="15"></line>
+            <line x1="17" y1="9" x2="23" y2="15"></line>
+          </svg>
+        </button>
+
+        <a href="#contact" class="btn btn-outline nav-cta" data-sound="click">
+          <span>Mari Kolaborasi</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+
+        <!-- Mobile Hamburger Toggle -->
+        <button id="menu-toggle" class="menu-btn" aria-label="Buka Menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
     </div>
-    <div class="person">
-      <div class="avatar ayu">A</div>
-      <h3>Ayu</h3>
-      <div class="role">Sang Pujaan</div>
-      <p>Pribadi yang hangat dan penuh kasih. Bagi Ayu, Trendon adalah pelabuhan yang menenangkan, tempat setiap cerita dan mimpi ia bagi bersama.</p>
-    </div>
-  </div>
-</section>
+  </header>
 
-<!-- TIMELINE -->
-<section class="timeline-section">
-  <div class="container">
-    <h2 class="section-title">Perjalanan Kami</h2>
-    <p class="section-sub">Momen-momen yang mengubah segalanya</p>
+  <main>
+    <!-- HERO SECTION -->
+    <section id="hero" class="hero-section">
+      <div class="container hero-container">
+        
+        <div class="hero-badge reveal">
+          <span class="badge-pulse"></span>
+          <span class="badge-text">DUO CREATIVE &amp; SYSTEMS ENGINEERING</span>
+        </div>
 
-    <div class="timeline">
-      <div class="tl-item">
-        <div class="tl-card">
-          <div class="tl-date">Babak Pertama</div>
-          <h4>Pertemuan Pertama</h4>
-          <p>Langkah pertama yang tak direncanakan, namun mengubah segalanya. Sebuah senyum sederhana yang tersimpan hingga kini.</p>
+        <h1 class="hero-title reveal delay-1">
+          Kreativitas <span class="gradient-text-cyan">Julio</span> Menemui Kekuatan Rekayasa <span class="gradient-text-purple">Trendon</span>.
+        </h1>
+
+        <p class="hero-subtitle reveal delay-2">
+          Kami memadukan desain UI/UX berkelas tinggi, animasi web 3D interaktif, serta arsitektur backend ultra-cepat untuk menghasilkan produk digital kelas dunia.
+        </p>
+
+        <div class="hero-buttons reveal delay-3">
+          <a href="#projects" class="btn btn-primary" data-sound="click">
+            <span>Jelajahi Portofolio</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+          </a>
+          <a href="#about" class="btn btn-glass" data-sound="click">
+            <span>Mengenal Julio &amp; Trendon</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+          </a>
+        </div>
+
+        <!-- Co-Founders Showcase Cards in Hero -->
+        <div class="hero-duo-cards reveal delay-4">
+          <!-- Card Julio -->
+          <div class="duo-tilt-card card-julio" data-tilt>
+            <div class="card-glow-layer"></div>
+            <div class="duo-avatar-wrapper">
+              <div class="avatar-frame avatar-cyan">
+                <svg viewBox="0 0 100 100" class="avatar-svg">
+                  <circle cx="50" cy="50" r="46" fill="#0f172a" stroke="#06b6d4" stroke-width="2"/>
+                  <!-- Stylized Avatar for Julio (Creative/Visionary) -->
+                  <circle cx="50" cy="38" r="18" fill="#0891b2"/>
+                  <path d="M24 82 C 28 60, 72 60, 76 82 Z" fill="#0e7490"/>
+                  <path d="M42 34 L 46 34 M 54 34 L 58 34" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+                  <path d="M46 45 Q 50 48 54 45" stroke="#ffffff" stroke-width="2" fill="none"/>
+                  <!-- Creative Glasses or Accent -->
+                  <circle cx="44" cy="35" r="7" stroke="#22d3ee" stroke-width="1.8" fill="rgba(34, 211, 238, 0.15)"/>
+                  <circle cx="56" cy="35" r="7" stroke="#22d3ee" stroke-width="1.8" fill="rgba(34, 211, 238, 0.15)"/>
+                  <path d="M51 35 L 49 35" stroke="#22d3ee" stroke-width="2"/>
+                </svg>
+              </div>
+              <div class="status-indicator">
+                <span class="dot-online"></span> Available
+              </div>
+            </div>
+            <div class="duo-card-info">
+              <span class="role-badge cyan-badge">CREATIVE DIRECTOR &amp; UI/UX</span>
+              <h3 class="duo-name">Julio Pratama</h3>
+              <p class="duo-desc">Pakar estetika visual, animasi WebGL interaktif, micro-interactions, dan identitas brand modern.</p>
+              <div class="mini-tags">
+                <span>UI/UX</span>
+                <span>Three.js</span>
+                <span>Figma</span>
+                <span>Motion CSS</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Central Synergy Icon -->
+          <div class="duo-synergy-indicator">
+            <div class="synergy-pulse"></div>
+            <div class="synergy-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              </svg>
+            </div>
+            <span class="synergy-label">PERFECT SYNERGY</span>
+          </div>
+
+          <!-- Card Trendon -->
+          <div class="duo-tilt-card card-trendon" data-tilt>
+            <div class="card-glow-layer"></div>
+            <div class="duo-avatar-wrapper">
+              <div class="avatar-frame avatar-purple">
+                <svg viewBox="0 0 100 100" class="avatar-svg">
+                  <circle cx="50" cy="50" r="46" fill="#0f172a" stroke="#8b5cf6" stroke-width="2"/>
+                  <!-- Stylized Avatar for Trendon (Engineer/Architect) -->
+                  <circle cx="50" cy="38" r="18" fill="#7c3aed"/>
+                  <path d="M24 82 C 28 60, 72 60, 76 82 Z" fill="#6d28d9"/>
+                  <path d="M40 35 L 47 35 M 53 35 L 60 35" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+                  <path d="M46 45 Q 50 49 54 45" stroke="#ffffff" stroke-width="2" fill="none"/>
+                  <!-- Tech headset or neural node -->
+                  <path d="M28 38 C 28 22, 72 22, 72 38" stroke="#a78bfa" stroke-width="2.2" fill="none"/>
+                  <rect x="25" y="34" width="6" height="12" rx="3" fill="#c084fc"/>
+                  <rect x="69" y="34" width="6" height="12" rx="3" fill="#c084fc"/>
+                </svg>
+              </div>
+              <div class="status-indicator">
+                <span class="dot-online"></span> Active
+              </div>
+            </div>
+            <div class="duo-card-info">
+              <span class="role-badge purple-badge">SYSTEMS ARCHITECT &amp; FULL-STACK</span>
+              <h3 class="duo-name">Trendon Alvero</h3>
+              <p class="duo-desc">Arsitek sistem komputasi terdistribusi, optimasi performa backend, API tingkat lanjut, &amp; integrasi AI.</p>
+              <div class="mini-tags">
+                <span>Distributed Systems</span>
+                <span>Node/Go</span>
+                <span>Cloud DevOps</span>
+                <span>Security</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Metrics Strip -->
+        <div class="metrics-grid reveal delay-5">
+          <div class="metric-card">
+            <span class="metric-number" data-target="99.9">0</span><span class="metric-unit">%</span>
+            <span class="metric-label">Uptime &amp; Stabilitas Sistem</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-number" data-target="80">0</span><span class="metric-unit">+</span>
+            <span class="metric-label">Proyek Skala Global Selesai</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-number" data-target="60">0</span><span class="metric-unit">fps</span>
+            <span class="metric-label">Animasi Halus &amp; Responsif</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-number" data-target="100">0</span><span class="metric-unit">%</span>
+            <span class="metric-label">Kepuasan Klien Korporat</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION: MEET THE DUO -->
+    <section id="about" class="about-section">
+      <div class="container">
+        
+        <div class="section-header reveal">
+          <span class="section-subtitle">// 01. FILOSOFI &amp; KOLABORASI</span>
+          <h2 class="section-title">Harmoni Seni Desain &amp; Ketepatan Kode</h2>
+          <div class="section-line"></div>
+          <p class="section-desc">
+            Banyak website memukau secara visual namun lambat, atau sebaliknya tangguh di backend tapi membosankan di mata. Julio &amp; Trendon hadir menghapus jurang pemisah tersebut.
+          </p>
+        </div>
+
+        <div class="duo-detail-grid">
+          
+          <!-- Column Julio -->
+          <div class="profile-box profile-cyan reveal" data-tilt>
+            <div class="profile-header">
+              <div class="profile-meta">
+                <span class="profile-tag">SENIMAN DIGITAL</span>
+                <h3>Julio — The Visionary Designer</h3>
+                <p class="profile-quote">"Sebuah antarmuka bukan sekadar tampilan grafis, tapi sebuah emosi dan narasi interaktif yang dirasakan pengguna."</p>
+              </div>
+            </div>
+            
+            <div class="profile-body">
+              <p class="bio-text">
+                Dengan pengalaman lebih dari 6 tahun memimpin desain produk di industri startup unicorn dan agensi digital, Julio memfokuskan dirinya pada <strong>Spatial UI, 3D Canvas interactions, Glassmorphism, Micro-interactions</strong>, serta pengalaman emosional pengguna.
+              </p>
+
+              <div class="skill-meter-group">
+                <div class="skill-meter">
+                  <div class="skill-info">
+                    <span>UI/UX Architecture &amp; Design System</span>
+                    <span class="pct">98%</span>
+                  </div>
+                  <div class="meter-bar"><div class="meter-fill fill-cyan" style="width: 98%;"></div></div>
+                </div>
+
+                <div class="skill-meter">
+                  <div class="skill-info">
+                    <span>WebGL, Three.js &amp; Motion Graphics</span>
+                    <span class="pct">92%</span>
+                  </div>
+                  <div class="meter-bar"><div class="meter-fill fill-cyan" style="width: 92%;"></div></div>
+                </div>
+
+                <div class="skill-meter">
+                  <div class="skill-info">
+                    <span>Design Thinking &amp; Brand Strategy</span>
+                    <span class="pct">95%</span>
+                  </div>
+                  <div class="meter-bar"><div class="meter-fill fill-cyan" style="width: 95%;"></div></div>
+                </div>
+              </div>
+
+              <div class="profile-badges">
+                <span class="pill-badge">✨ Awwwards Site of the Day Nominee</span>
+                <span class="pill-badge">🎨 Figma Certified Master</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Column Trendon -->
+          <div class="profile-box profile-purple reveal delay-1" data-tilt>
+            <div class="profile-header">
+              <div class="profile-meta">
+                <span class="profile-tag">ARSITEK SISTEM</span>
+                <h3>Trendon — The Engineering Engine</h3>
+                <p class="profile-quote">"Kecepatan adalah fitur utama. Kode yang elegan adalah yang mampu menangani jutaan permintaan tanpa jeda sedikit pun."</p>
+              </div>
+            </div>
+
+            <div class="profile-body">
+              <p class="bio-text">
+                Trendon adalah pakar rekayasa perangkat lunak berlatar belakang Computer Science dengan spesialisasi <strong>Distributed Microservices, High-Throughput APIs, Cyber Security, Cloud Infrastructures</strong>, dan orkestrasi model AI terkini.
+              </p>
+
+              <div class="skill-meter-group">
+                <div class="skill-meter">
+                  <div class="skill-info">
+                    <span>Full-Stack &amp; Scalable Architecture</span>
+                    <span class="pct">97%</span>
+                  </div>
+                  <div class="meter-bar"><div class="meter-fill fill-purple" style="width: 97%;"></div></div>
+                </div>
+
+                <div class="skill-meter">
+                  <div class="skill-info">
+                    <span>High-Performance APIs &amp; Databases</span>
+                    <span class="pct">95%</span>
+                  </div>
+                  <div class="meter-bar"><div class="meter-fill fill-purple" style="width: 95%;"></div></div>
+                </div>
+
+                <div class="skill-meter">
+                  <div class="skill-info">
+                    <span>DevOps, Kubernetes &amp; Cloud Security</span>
+                    <span class="pct">90%</span>
+                  </div>
+                  <div class="meter-bar"><div class="meter-fill fill-purple" style="width: 90%;"></div></div>
+                </div>
+              </div>
+
+              <div class="profile-badges">
+                <span class="pill-badge">⚡ 10M+ Requests/Day Handled</span>
+                <span class="pill-badge">🛡️ Certified Security Specialist</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SKILLS MATRIX & TECH STACK SECTION -->
+    <section id="skills" class="skills-section">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-subtitle">// 02. ARSENAL TEKNOLOGI</span>
+          <h2 class="section-title">Teknologi Modern yang Kami Kuasai</h2>
+          <div class="section-line"></div>
+          <p class="section-desc">
+            Kombinasi alat perancang terkini dan ekosistem pemrograman berkinerja tinggi.
+          </p>
+        </div>
+
+        <div class="stack-grid reveal">
+          
+          <div class="stack-card" data-sound="hover">
+            <div class="stack-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            </div>
+            <h4>Visual &amp; Spatial UI</h4>
+            <p>Three.js, WebGL, Canvas API, GSAP, Blender 3D, Figma, Framer Motion.</p>
+            <span class="stack-owner">Lead: Julio</span>
+          </div>
+
+          <div class="stack-card" data-sound="hover">
+            <div class="stack-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            </div>
+            <h4>Core Frontend Modern</h4>
+            <p>Modern ESNext, React, Vue, TypeScript, Tailwind CSS, Next.js, Web Components.</p>
+            <span class="stack-owner">Collaborative</span>
+          </div>
+
+          <div class="stack-card" data-sound="hover">
+            <div class="stack-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+            </div>
+            <h4>Backend &amp; Microservices</h4>
+            <p>Node.js, Go (Golang), Python, PostgreSQL, Redis, GraphQL, gRPC.</p>
+            <span class="stack-owner">Lead: Trendon</span>
+          </div>
+
+          <div class="stack-card" data-sound="hover">
+            <div class="stack-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#c084fc" stroke-width="2"><path d="M12 2a10 10 0 0 0-7.35 16.76L12 22l7.35-3.24A10 10 0 0 0 12 2z"/></svg>
+            </div>
+            <h4>Cloud &amp; DevOps Security</h4>
+            <p>Docker, Kubernetes, AWS, Google Cloud Platform, CI/CD Actions, Cloudflare.</p>
+            <span class="stack-owner">Lead: Trendon</span>
+          </div>
+
+          <div class="stack-card" data-sound="hover">
+            <div class="stack-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg>
+            </div>
+            <h4>AI &amp; Generative Systems</h4>
+            <p>LLM Agents, Vector Search, LangChain, Gemini API, OpenAI, Realtime Audio/Vision.</p>
+            <span class="stack-owner">Collaborative</span>
+          </div>
+
+          <div class="stack-card" data-sound="hover">
+            <div class="stack-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#eab308" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </div>
+            <h4>Extreme Web Performance</h4>
+            <p>Sub-second LCP, 100 PageSpeed scores, zero layout shifts, asset streaming.</p>
+            <span class="stack-owner">Guaranteed Standard</span>
+          </div>
+
         </div>
       </div>
-      <div class="tl-item">
-        <div class="tl-card">
-          <div class="tl-date">Babak Kedua</div>
-          <h4>Obrolan Panjang</h4>
-          <p>Dari sapaan singkat menjadi percakapan yang tak pernah ingin diakhiri. Setiap kata terasa seperti rumah.</p>
+    </section>
+
+    <!-- PROJECTS GALLERY SECTION -->
+    <section id="projects" class="projects-section">
+      <div class="container">
+        
+        <div class="section-header reveal">
+          <span class="section-subtitle">// 03. REKAM JEJAK PROYEK</span>
+          <h2 class="section-title">Karya Unggulan Pilihan</h2>
+          <div class="section-line"></div>
+          <p class="section-desc">
+            Setiap proyek dikembangkan bersama dengan perhatian mendalam terhadap detail interaksi, transisi visual dinamis, serta ketahanan arsitektur backend.
+          </p>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="filter-controls reveal">
+          <button class="filter-btn active" data-filter="all" data-sound="click">Semua Karya</button>
+          <button class="filter-btn" data-filter="creative" data-sound="click">Creative &amp; 3D</button>
+          <button class="filter-btn" data-filter="fullstack" data-sound="click">Full-Stack &amp; Cloud</button>
+          <button class="filter-btn" data-filter="ai" data-sound="click">AI &amp; Smart Systems</button>
+        </div>
+
+        <!-- Project Cards Grid -->
+        <div class="projects-grid" id="projects-grid">
+          
+          <!-- Project 1: Creative & 3D -->
+          <div class="project-card reveal" data-category="creative" data-sound="hover">
+            <div class="project-banner banner-1">
+              <div class="banner-overlay"></div>
+              <div class="project-tags-floating">
+                <span class="tag-badge">Web 3D / WebGL</span>
+                <span class="tag-badge">Motion UI</span>
+              </div>
+              <div class="project-preview-mockup">
+                <div class="mockup-header">
+                  <span class="circle-r"></span><span class="circle-y"></span><span class="circle-g"></span>
+                  <span class="mockup-url">https://aether-spatial.io</span>
+                </div>
+                <div class="mockup-canvas-art">
+                  <div class="pulsing-orb orb-1"></div>
+                  <div class="pulsing-orb orb-2"></div>
+                  <div class="grid-lines"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="project-content">
+              <div class="project-meta-top">
+                <span class="project-collab">Julio (Desain 3D) &times; Trendon (Optimasi WebGL)</span>
+              </div>
+              <h3 class="project-title">Aether Spatial — 3D Architecture Canvas</h3>
+              <p class="project-summary">Platform visualisasi arsitektur 3D real-time di browser dengan pencahayaan photorealistic, shader kustom, dan responsivitas 60fps.</p>
+              
+              <div class="project-highlights">
+                <div class="highlight-item">
+                  <span class="hl-val">+340%</span>
+                  <span class="hl-label">User Engagement</span>
+                </div>
+                <div class="highlight-item">
+                  <span class="hl-val">45ms</span>
+                  <span class="hl-label">Render Latency</span>
+                </div>
+              </div>
+
+              <div class="project-footer">
+                <button class="btn btn-sm btn-outline open-modal-btn" data-project="1" data-sound="click">
+                  Lihat Detail Proyek
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 2: Fullstack & Cloud -->
+          <div class="project-card reveal delay-1" data-category="fullstack" data-sound="hover">
+            <div class="project-banner banner-2">
+              <div class="banner-overlay"></div>
+              <div class="project-tags-floating">
+                <span class="tag-badge">High Frequency</span>
+                <span class="tag-badge">Fintech</span>
+              </div>
+              <div class="project-preview-mockup">
+                <div class="mockup-header">
+                  <span class="circle-r"></span><span class="circle-y"></span><span class="circle-g"></span>
+                  <span class="mockup-url">https://chronos-terminal.trade</span>
+                </div>
+                <div class="mockup-canvas-art chart-art">
+                  <div class="stock-candles">
+                    <span class="bar-g" style="height: 60%"></span>
+                    <span class="bar-r" style="height: 40%"></span>
+                    <span class="bar-g" style="height: 85%"></span>
+                    <span class="bar-g" style="height: 95%"></span>
+                    <span class="bar-r" style="height: 50%"></span>
+                    <span class="bar-g" style="height: 110%"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="project-content">
+              <div class="project-meta-top">
+                <span class="project-collab">Trendon (Engine Go/WebSocket) &times; Julio (Spatial HUD)</span>
+              </div>
+              <h3 class="project-title">Chronos Engine — Pro Trading Terminal</h3>
+              <p class="project-summary">Antarmuka trading aset kripto &amp; komoditas berkecepatan mikrodetik dengan visualisasi grafik canvas instan dan arsitektur websocket tanpa jeda.</p>
+              
+              <div class="project-highlights">
+                <div class="highlight-item">
+                  <span class="hl-val">1.2M+</span>
+                  <span class="hl-label">Orders / Sec</span>
+                </div>
+                <div class="highlight-item">
+                  <span class="hl-val">99.99%</span>
+                  <span class="hl-label">Uptime SLA</span>
+                </div>
+              </div>
+
+              <div class="project-footer">
+                <button class="btn btn-sm btn-outline open-modal-btn" data-project="2" data-sound="click">
+                  Lihat Detail Proyek
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 3: AI & Smart Systems -->
+          <div class="project-card reveal delay-2" data-category="ai" data-sound="hover">
+            <div class="project-banner banner-3">
+              <div class="banner-overlay"></div>
+              <div class="project-tags-floating">
+                <span class="tag-badge">Autonomous AI</span>
+                <span class="tag-badge">Neural Vector</span>
+              </div>
+              <div class="project-preview-mockup">
+                <div class="mockup-header">
+                  <span class="circle-r"></span><span class="circle-y"></span><span class="circle-g"></span>
+                  <span class="mockup-url">https://nexus-ai.internal</span>
+                </div>
+                <div class="mockup-canvas-art ai-art">
+                  <div class="neural-nodes">
+                    <span class="n-node"></span>
+                    <span class="n-node"></span>
+                    <span class="n-node"></span>
+                    <span class="n-node"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="project-content">
+              <div class="project-meta-top">
+                <span class="project-collab">Trendon (LLM Pipeline) &times; Julio (Generative UI)</span>
+              </div>
+              <h3 class="project-title">Nexus Brain — Multi-Agent Enterprise Suite</h3>
+              <p class="project-summary">Sistem AI otonom untuk otomatisasi keputusan korporat, dilengkapi dasbor interaktif adaptif yang berubah layout secara dinamis berdasarkan konteks obrolan.</p>
+              
+              <div class="project-highlights">
+                <div class="highlight-item">
+                  <span class="hl-val">85%</span>
+                  <span class="hl-label">Task Automation</span>
+                </div>
+                <div class="highlight-item">
+                  <span class="hl-val">500ms</span>
+                  <span class="hl-label">Stream Response</span>
+                </div>
+              </div>
+
+              <div class="project-footer">
+                <button class="btn btn-sm btn-outline open-modal-btn" data-project="3" data-sound="click">
+                  Lihat Detail Proyek
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 4: Creative & 3D -->
+          <div class="project-card reveal" data-category="creative" data-sound="hover">
+            <div class="project-banner banner-4">
+              <div class="banner-overlay"></div>
+              <div class="project-tags-floating">
+                <span class="tag-badge">Luxury eCommerce</span>
+                <span class="tag-badge">Interactive Sound</span>
+              </div>
+              <div class="project-preview-mockup">
+                <div class="mockup-header">
+                  <span class="circle-r"></span><span class="circle-y"></span><span class="circle-g"></span>
+                  <span class="mockup-url">https://vortex-couture.com</span>
+                </div>
+                <div class="mockup-canvas-art couture-art">
+                  <div class="floating-ring"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="project-content">
+              <div class="project-meta-top">
+                <span class="project-collab">Julio (Art Direction &amp; Audio FX) &times; Trendon (Store Engine)</span>
+              </div>
+              <h3 class="project-title">Vortex Couture — Immersive Fashion Realm</h3>
+              <p class="project-summary">Pengalaman belanja barang mewah digital dengan audio ambient prosedural, inspeksi material 3D 360 derajat, dan checkout seamless instan.</p>
+              
+              <div class="project-highlights">
+                <div class="highlight-item">
+                  <span class="hl-val">4.8/5</span>
+                  <span class="hl-label">UX Rating</span>
+                </div>
+                <div class="highlight-item">
+                  <span class="hl-val">+180%</span>
+                  <span class="hl-label">Conversion Rate</span>
+                </div>
+              </div>
+
+              <div class="project-footer">
+                <button class="btn btn-sm btn-outline open-modal-btn" data-project="4" data-sound="click">
+                  Lihat Detail Proyek
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 5: Fullstack & Cloud -->
+          <div class="project-card reveal delay-1" data-category="fullstack" data-sound="hover">
+            <div class="project-banner banner-5">
+              <div class="banner-overlay"></div>
+              <div class="project-tags-floating">
+                <span class="tag-badge">Zero Trust</span>
+                <span class="tag-badge">Cyber Intelligence</span>
+              </div>
+              <div class="project-preview-mockup">
+                <div class="mockup-header">
+                  <span class="circle-r"></span><span class="circle-y"></span><span class="circle-g"></span>
+                  <span class="mockup-url">https://cybershield.defense</span>
+                </div>
+                <div class="mockup-canvas-art cyber-art">
+                  <div class="radar-sweep"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="project-content">
+              <div class="project-meta-top">
+                <span class="project-collab">Trendon (Security Mesh) &times; Julio (Threat Map HUD)</span>
+              </div>
+              <h3 class="project-title">CyberShield — Global Threat Telemetry</h3>
+              <p class="project-summary">Pusat kendali pertahanan siber real-time yang memetakan serangan DDoS global secara interaktif dengan visualisasi globe 3D berbasis WebGL.</p>
+              
+              <div class="project-highlights">
+                <div class="highlight-item">
+                  <span class="hl-val">Zero</span>
+                  <span class="hl-label">False Positives</span>
+                </div>
+                <div class="highlight-item">
+                  <span class="hl-val">100Gbps+</span>
+                  <span class="hl-label">Filter Capacity</span>
+                </div>
+              </div>
+
+              <div class="project-footer">
+                <button class="btn btn-sm btn-outline open-modal-btn" data-project="5" data-sound="click">
+                  Lihat Detail Proyek
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 6: AI & Smart Systems -->
+          <div class="project-card reveal delay-2" data-category="ai" data-sound="hover">
+            <div class="project-banner banner-6">
+              <div class="banner-overlay"></div>
+              <div class="project-tags-floating">
+                <span class="tag-badge">Audio AI</span>
+                <span class="tag-badge">Web Audio Synth</span>
+              </div>
+              <div class="project-preview-mockup">
+                <div class="mockup-header">
+                  <span class="circle-r"></span><span class="circle-y"></span><span class="circle-g"></span>
+                  <span class="mockup-url">https://pulse-sound.engine</span>
+                </div>
+                <div class="mockup-canvas-art wave-art">
+                  <div class="sound-wave-bars">
+                    <span></span><span></span><span></span><span></span><span></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="project-content">
+              <div class="project-meta-top">
+                <span class="project-collab">Julio (Sound Design UX) &times; Trendon (DSP WebAssembly)</span>
+              </div>
+              <h3 class="project-title">Pulse Generative Soundscape</h3>
+              <p class="project-summary">Mesin sintesis audio generatif di browser untuk relaksasi dan fokus kognitif, mengadaptasi frekuensi binaural mengikuti irama interaksi pengguna.</p>
+              
+              <div class="project-highlights">
+                <div class="highlight-item">
+                  <span class="hl-val">Lossless</span>
+                  <span class="hl-label">Audio Quality</span>
+                </div>
+                <div class="highlight-item">
+                  <span class="hl-val">0 Kb</span>
+                  <span class="hl-label">Audio Files (Pure Synth)</span>
+                </div>
+              </div>
+
+              <div class="project-footer">
+                <button class="btn btn-sm btn-outline open-modal-btn" data-project="6" data-sound="click">
+                  Lihat Detail Proyek
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TIMELINE & JOURNEY SECTION -->
+    <section id="experience" class="timeline-section">
+      <div class="container">
+        
+        <div class="section-header reveal">
+          <span class="section-subtitle">// 04. PERJALANAN KAMI</span>
+          <h2 class="section-title">Tonggak Sejarah &amp; Pencapaian</h2>
+          <div class="section-line"></div>
+          <p class="section-desc">
+            Bagaimana Julio &amp; Trendon bersatu membangun standar baru pengalaman digital.
+          </p>
+        </div>
+
+        <div class="timeline-wrapper">
+          <div class="timeline-spine"></div>
+
+          <!-- Step 1 -->
+          <div class="timeline-item reveal">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">2026 — SEKARANG</div>
+            <div class="timeline-card">
+              <span class="t-badge">Generative &amp; Spatial Web</span>
+              <h4>Ekspansi Solusi Web Generatif &amp; Spatial 3D</h4>
+              <p>Membantu startup terkemuka di San Francisco, Tokyo, dan Jakarta meluncurkan antarmuka berbasis Spatial AI dan micro-interactions berkecepatan tinggi.</p>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="timeline-item reveal delay-1">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">2024 — 2025</div>
+            <div class="timeline-card">
+              <span class="t-badge">Official Duo Partnership</span>
+              <h4>Pendirian Studio Kreatif Julio &amp; Trendon</h4>
+              <p>Menggabungkan kekuatan desain visual Julio dengan keahlian engineering backend Trendon, berhasil menyelesaikan lebih dari 40 proyek skala besar.</p>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="timeline-item reveal delay-2">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">2022 — 2023</div>
+            <div class="timeline-card">
+              <span class="t-badge">Global Recognition</span>
+              <h4>Penghargaan Desain &amp; Performa Global</h4>
+              <p>Proyek web bersama dinominasikan dalam ajang bergengsi internasional untuk kategori Creative Web Interaction dan Zero-Downtime Architecture.</p>
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="timeline-item reveal delay-3">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">2020 — 2021</div>
+            <div class="timeline-card">
+              <span class="t-badge">The Origin</span>
+              <h4>Pertemuan Pertama di Hackathon Internasional</h4>
+              <p>Julio meraih Best UI/UX Design dan Trendon memenangkan Best Technical Backend di kompetisi open-source, mengawali kolaborasi berkesinambungan.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS SECTION -->
+    <section class="testimonial-section">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-subtitle">// KEPUASAN MITRA</span>
+          <h2 class="section-title">Apa Kata Mereka Tentang Kami</h2>
+          <div class="section-line"></div>
+        </div>
+
+        <div class="testimonials-grid reveal">
+          <div class="testimonial-card" data-sound="hover">
+            <div class="testi-rating">★★★★★</div>
+            <p class="testi-text">"Julio dan Trendon adalah perpaduan langka di dunia teknologi. Julio mewujudkan estetika visual yang sangat memukau, sementara sistem dari Trendon sangat kokoh tanpa pernah sekalipun lag!"</p>
+            <div class="testi-author">
+              <div class="author-avatar av-1">MA</div>
+              <div>
+                <strong>Michael Anderson</strong>
+                <span>CTO, Horizon Ventures (Singapore)</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card" data-sound="hover">
+            <div class="testi-rating">★★★★★</div>
+            <p class="testi-text">"Proyek rebranding dan website 3D kami langsung melipatgandakan konversi investor dalam tempo 2 minggu sejak rilis. Pengerjaan sangat terstruktur dan komunikatif."</p>
+            <div class="testi-author">
+              <div class="author-avatar av-2">SW</div>
+              <div>
+                <strong>Sarah Wijaya</strong>
+                <span>Founder &amp; CEO, Nexus FinTech</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card" data-sound="hover">
+            <div class="testi-rating">★★★★★</div>
+            <p class="testi-text">"Animasi dan micro-interaction yang mereka rancang terasa sangat hidup dan halus. Website kami sering dijadikan referensi desain oleh desainer di komunitas global."</p>
+            <div class="testi-author">
+              <div class="author-avatar av-3">DK</div>
+              <div>
+                <strong>Daisuke Kuroda</strong>
+                <span>Lead Product Designer, NeoStudio Tokyo</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="tl-item">
-        <div class="tl-card">
-          <div class="tl-date">Babak Ketiga</div>
-          <h4>Menyatakan Cinta</h4>
-          <p>Momen ketika hati akhirnya berbicara. Sebuah keberanian yang berbuah manis, dan awal dari segalanya.</p>
+    </section>
+
+    <!-- CONTACT & COLLABORATION SECTION -->
+    <section id="contact" class="contact-section">
+      <div class="container">
+        
+        <div class="contact-box reveal">
+          <div class="contact-header-content">
+            <span class="section-subtitle">// 05. MEMULAI PROYEK</span>
+            <h2 class="section-title">Punya Ide Brilian? Mari Wujudkan Bersama.</h2>
+            <p class="contact-desc">
+              Apakah Anda membutuhkan website portofolio kelas atas, antarmuka 3D interaktif, atau arsitektur platform digital yang tangguh? Kami siap berdiskusi.
+            </p>
+
+            <div class="direct-contact-items">
+              <div class="direct-item" data-sound="hover">
+                <div class="direct-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </div>
+                <div>
+                  <span class="direct-label">Email Resmi</span>
+                  <a href="mailto:hello@juliotrendon.design" class="direct-link copy-email-btn" title="Klik untuk menyalin">
+                    hello@juliotrendon.design
+                    <span class="copy-badge" id="copy-badge">Salin</span>
+                  </a>
+                </div>
+              </div>
+
+              <div class="direct-item" data-sound="hover">
+                <div class="direct-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                </div>
+                <div>
+                  <span class="direct-label">Lokasi Studio</span>
+                  <span class="direct-value">Jakarta &bull; Bali &bull; Remote Global</span>
+                </div>
+              </div>
+
+              <div class="direct-item" data-sound="hover">
+                <div class="direct-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                </div>
+                <div>
+                  <span class="direct-label">Kecepatan Respons</span>
+                  <span class="direct-value">Biasanya dalam 1 &times; 24 jam</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive Contact Form -->
+          <form class="contact-form" id="contact-form">
+            <h3 class="form-title">Kirimkan Pesan Anda</h3>
+            
+            <div class="form-row">
+              <div class="input-group">
+                <label for="form-name">Nama Lengkap *</label>
+                <input type="text" id="form-name" name="name" placeholder="cth: Alexandra Smith" required>
+              </div>
+              <div class="input-group">
+                <label for="form-email">Email Anda *</label>
+                <input type="email" id="form-email" name="email" placeholder="cth: alexandra@company.com" required>
+              </div>
+            </div>
+
+            <div class="input-group">
+              <label for="form-interest">Tujuan Proyek / Kebutuhan</label>
+              <select id="form-interest" name="interest">
+                <option value="portfolio">Website Portofolio Profesional &amp; Animasi Web</option>
+                <option value="3d-web">Pengembangan Web 3D &amp; Spatial UI</option>
+                <option value="fullstack">Aplikasi Full-Stack &amp; Arsitektur Cloud</option>
+                <option value="ai-integration">Integrasi AI &amp; Generative Agent</option>
+                <option value="consultation">Konsultasi Desain &amp; Engineering</option>
+              </select>
+            </div>
+
+            <div class="input-group">
+              <label for="form-budget">Estimasi Anggaran Proyek</label>
+              <div class="budget-chips">
+                <button type="button" class="budget-chip active" data-val="standard">&lt; $2.5k (Startup)</button>
+                <button type="button" class="budget-chip" data-val="growth">$2.5k - $10k (Growth)</button>
+                <button type="button" class="budget-chip" data-val="enterprise">&gt; $10k (Enterprise)</button>
+              </div>
+            </div>
+
+            <div class="input-group">
+              <label for="form-message">Deskripsi Proyek / Pesan *</label>
+              <textarea id="form-message" name="message" rows="4" placeholder="Ceritakan tujuan, fitur yang diinginkan, atau deadline..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block" id="form-submit-btn" data-sound="click">
+              <span>Kirim Pesan Sekarang</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            </button>
+
+            <!-- Form Feedback Box -->
+            <div class="form-feedback hidden" id="form-feedback"></div>
+          </form>
+
         </div>
+
       </div>
-      <div class="tl-item">
-        <div class="tl-card">
-          <div class="tl-date">Hari Ini</div>
-          <h4>Masih Bersama</h4>
-          <p>Melewati setiap musim dengan tangan yang tetap tergenggam. Karena cinta sejati bukan tentang sempurna, tapi tentang bertahan.</p>
-        </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-container">
+      <div class="footer-brand">
+        <a href="#hero" class="brand-logo">
+          <span class="logo-symbol">&lt;J&amp;T/&gt;</span>
+          <div class="logo-text">
+            <span class="brand-name">JULIO &amp; TRENDON</span>
+            <span class="brand-tag">DIGITAL ARCHITECTS</span>
+          </div>
+        </a>
+        <p class="footer-bio">
+          Dua pikiran kreatif, satu tujuan: Menciptakan karya digital interaktif dengan estetika memukau dan kehandalan rekayasa tanpa kompromi.
+        </p>
+      </div>
+
+      <div class="footer-links-group">
+        <h4>Navigasi</h4>
+        <a href="#about">Profil Duo</a>
+        <a href="#skills">Keahlian &amp; Stack</a>
+        <a href="#projects">Galeri Karya</a>
+        <a href="#experience">Pengalaman</a>
+        <a href="#contact">Hubungi Kami</a>
+      </div>
+
+      <div class="footer-links-group">
+        <h4>Sosial Media &amp; Hub</h4>
+        <a href="https://github.com" target="_blank" rel="noopener">GitHub Julio &amp; Trendon</a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn Profile</a>
+        <a href="https://dribbble.com" target="_blank" rel="noopener">Dribbble Portfolio</a>
+        <a href="https://twitter.com" target="_blank" rel="noopener">X / Twitter Updates</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p>&copy; 2026 Julio &amp; Trendon. Hak Cipta Dilindungi. Dibuat dengan presisi tinggi menggunakan HTML5, CSS3 murni &amp; JavaScript modern.</p>
+        <a href="#hero" class="back-to-top" title="Kembali ke atas" data-sound="click">
+          <span>Ke Atas</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- PROJECT DETAILS MODAL -->
+  <div class="modal-overlay hidden" id="project-modal">
+    <div class="modal-container">
+      <button class="modal-close" id="modal-close" aria-label="Tutup Detail Proyek" data-sound="click">&times;</button>
+      <div class="modal-body" id="modal-content">
+        <!-- Content injected dynamically via script.js -->
       </div>
     </div>
   </div>
-</section>
 
-<!-- COUNTER -->
-<section class="counter-section">
-  <div class="container">
-    <h2 class="section-title">Waktu yang Terjalin</h2>
-    <p class="section-sub">Setiap detik adalah anugerah</p>
+  <!-- Confetti Canvas for celebration effect -->
+  <canvas id="confetti-canvas"></canvas>
 
-    <div class="counter-grid">
-      <div class="counter-box">
-        <div class="counter-num" id="days">0</div>
-        <div class="counter-label">Hari</div>
-      </div>
-      <div class="counter-box">
-        <div class="counter-num" id="hours">0</div>
-        <div class="counter-label">Jam</div>
-      </div>
-      <div class="counter-box">
-        <div class="counter-num" id="minutes">0</div>
-        <div class="counter-label">Menit</div>
-      </div>
-      <div class="counter-box">
-        <div class="counter-num" id="seconds">0</div>
-        <div class="counter-label">Detik</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- QUOTE -->
-<section class="quote-section">
-  <div class="container">
-    <div class="quote-card">
-      <p class="quote-text">
-        Cinta bukan tentang seberapa lama kita bersama, tapi tentang seberapa dalam kita saling menjaga satu sama lain.
-      </p>
-      <div class="quote-author">— Trendon & Ayu —</div>
-    </div>
-  </div>
-</section>
-
-<!-- MESSAGE -->
-<section class="message-section">
-  <div class="container">
-    <h2 class="section-title">Tinggalkan Pesan</h2>
-    <p class="section-sub">Untuk Trendon & Ayu</p>
-
-    <form class="form-card" id="loveForm">
-      <div class="form-group">
-        <label>Nama Kamu</label>
-        <input type="text" id="name" placeholder="Tulis namamu..." required>
-      </div>
-      <div class="form-group">
-        <label>Pesan Cinta</label>
-        <textarea id="msg" placeholder="Tulis pesan hangat untuk mereka..." required></textarea>
-      </div>
-      <button type="submit" class="btn">Kirim Pesan ❤</button>
-      <div class="form-message" id="formMsg">Terima kasih! Pesanmu telah terkirim. 💕</div>
-    </form>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="names">Trendon <span class="heart-beat">❤</span> Ayu</div>
-  <p>Dibuat dengan cinta, untuk cinta.</p>
-  <p style="margin-top: 10px;">© <span id="year"></span> — Selamanya & Selamanya</p>
-</footer>
-
-<script>
-  // Floating hearts
-  function createHearts() {
-    const hero = document.querySelector('.hero');
-    const hearts = ['❤', '💕', '💗', '💖', '♡'];
-    setInterval(() => {
-      const h = document.createElement('div');
-      h.className = 'heart-float';
-      h.textContent = hearts[Math.floor(Math.random() * hearts.length)];
-      h.style.left = Math.random() * 100 + '%';
-      h.style.fontSize = (Math.random() * 20 + 12) + 'px';
-      h.style.animationDuration = (Math.random() * 8 + 8) + 's';
-      hero.appendChild(h);
-      setTimeout(() => h.remove(), 16000);
-    }, 800);
-  }
-  createHearts();
-
-  // Love counter (mulai dari tanggal jadian — ganti sesuai kebutuhan)
-  const startDate = new Date('2022-02-14T00:00:00');
-
-  function updateCounter() {
-    const now = new Date();
-    const diff = now - startDate;
-
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const minutes = Math.floor((diff / (1000 * 60)) % 60);
-    const seconds = Math.floor((diff / 1000) % 60);
-
-    document.getElementById('days').textContent = days.toLocaleString('id-ID');
-    document.getElementById('hours').textContent = hours;
-    document.getElementById('minutes').textContent = minutes;
-    document.getElementById('seconds').textContent = seconds;
-  }
-  updateCounter();
-  setInterval(updateCounter, 1000);
-
-  // Form
-  document.getElementById('loveForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const name = document.getElementById('name').value.trim();
-    const msg = document.getElementById('msg').value.trim();
-    if (!name || !msg) return;
-
-    const formMsg = document.getElementById('formMsg');
-    formMsg.classList.add('show');
-    formMsg.textContent = `Terima kasih ${name}! Pesanmu telah terkirim. 💕`;
-
-    this.reset();
-    setTimeout(() => formMsg.classList.remove('show'), 5000);
-  });
-
-  // Smooth scroll
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', e => {
-      e.preventDefault();
-      const target = document.querySelector(a.getAttribute('href'));
-      if (target) target.scrollIntoView({ behavior: 'smooth' });
-    });
-  });
-
-  // Year
-  document.getElementById('year').textContent = new Date().getFullYear();
-
-  // Scroll reveal
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = '1';
-        entry.target.style.transform = 'translateY(0)';
-      }
-    });
-  }, { threshold: 0.1 });
-
-  document.querySelectorAll('.person, .tl-card, .counter-box, .quote-card, .form-card').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(30px)';
-    el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-    observer.observe(el);
-  });
-</script>
-
+  <script src="script.js"></script>
 </body>
 </html>
